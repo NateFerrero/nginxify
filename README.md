@@ -11,6 +11,14 @@ cd nginxify
 sudo make install
 ```
 
+Then, add the following to /etc/sudoers using `visudo`:
+
+```bash
+# Nginxify
+%nginxify ALL=NOPASSWD: /sbin/nginxify
+```
+
+
 ## Allowing Users to run `nginxify`
 
 ```bash
