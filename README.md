@@ -15,7 +15,7 @@ Then, add the following to /etc/sudoers using `visudo`:
 
 ```bash
 # Nginxify
-%nginxify ALL=NOPASSWD: /bin/nginxify
+%nginxify ALL=NOPASSWD: /bin/nginxify, /etc/init.d/nginx reload
 ```
 
 

@@ -13,6 +13,8 @@ install:
 	chmod g+x /usr/bin/nginxify
 	chmod +x /usr/bin/nginxify
 
+	mkdir -p /etc/nginx/sites-enabled
+
 	@echo "Successfully installed! Try: nginxify"
 
 uninstall:
