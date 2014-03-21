@@ -1,4 +1,6 @@
-#!env python
+#! /usr/bin/python2
+# Author: Nate Ferrero
+
 import json
 import glob
 
