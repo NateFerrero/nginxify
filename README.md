@@ -14,7 +14,7 @@ sudo make install
 ## Allowing Users to run `nginxify`
 
 ```bash
-sudo usermod -G nginxify the_username
+sudo usermod -a -G nginxify the_username
 ```
 
 Keep in mind that the user will have to open a new shell to gain the new group permissions.
