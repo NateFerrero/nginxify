@@ -7,12 +7,12 @@ Nginxify parses JSON configurations of NGINX config files and creates the approp
 
 Create a file called `.nginx` in your home directory (/home/username), and populate according to the following JSON:
 
-```json
+```js
 {
   "my.domain.com": {
     "paths": {
-      "/": "my_domain", # this is a directory relative to your home directory,
-      "/testapp": 3000  # This will proxy all requests to a server running on port 3000
+      "/": "my_domain", // this is a directory relative to your home directory,
+      "/testapp": 3000  // This will proxy all requests to a server running on port 3000
     }
   },
   "other.domain.com": {
