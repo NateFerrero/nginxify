@@ -3,6 +3,28 @@ nginxify
 
 Nginxify parses JSON configurations of NGINX config files and creates the appropriate representations in configuration.
 
+## Usage
+
+Create a file called `.nginx` in your home directory (/home/username), and populate according to the following JSON:
+
+```json
+{
+  "my.domain.com": {
+    "paths": {
+      "/": "my_domain", # this is a directory relative to your home directory,
+      "/testapp": 3000  # This will proxy all requests to a server running on port 3000
+    }
+  },
+  "other.domain.com": {
+    "paths": {
+      "/foo": "another/folder/path"
+    }
+  }
+}
+```
+
+Finally, when you have completed editing the configuration file, run the `nginxify` command! That's all.
+
 ## Installation
 
 ```bash
