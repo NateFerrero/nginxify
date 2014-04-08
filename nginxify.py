@@ -121,9 +121,9 @@ for path in glob.glob('/home/*/.nginx'):
             loc['value'] += '/'
 
         # Proxy to port
-        elif (isinstance(value, integer)):
+        elif (isinstance(value, int)):
           loc['type'] = 'proxy_pass'
-          loc['value'] = 'http://localhost:' + value
+          loc['value'] = 'http://localhost:{}'.format(value)
 
         # Invalid
         else:
