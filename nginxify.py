@@ -13,6 +13,27 @@ location {location} <<
   {type} {value};
 >>"""
 
+php_fpm_block = """
+location ~ \.php$ <<
+  try_files $uri =404;
+  fastcgi_split_path_info ^(.+\.php)(/.+)$;
+  # With php5-fpm:
+  fastcgi_pass unix:/var/run/php5-fpm.sock;
+  fastcgi_index index.php;
+  include fastcgi_params;
+>>"""
+
+sphp_fpm_block = """
+location ~ \.php$ <<
+  try_files $uri =404;
+  fastcgi_split_path_info ^(.+\.php)(/.+)$;
+  # With php5-fpm:
+  fastcgi_pass unix:/var/run/php5-fpm.sock;
+  fastcgi_index index.php;
+  include fastcgi_params;
+  fastcgi_param  PHP_VALUE "auto_prepend_file=/usr/share/simplified-php/simplified.php \n auto_append_file=/usr/share/simplified-php/simplified.php";
+>>"""
+
 http_https = """
 server <<
   listen 80;
@@ -114,14 +135,41 @@ for path in glob.glob('/home/*/.nginx'):
         }
 
         # Static files
-        if (isinstance(value, basestring)):
+        if isinstance(value, basestring):
           loc['type'] = 'alias'
           loc['value'] = os.path.dirname(path) + '/' + value.replace('..', '.')
           if not loc['value'].endswith('/'):
             loc['value'] += '/'
 
+        # Advanced configuration
+        elif isinstance(value, list):
+          if len(value) != 2:
+            print '[error] List must contain 2 elements exactly'
+            continue
+
+          _type, root = value
+          loc['type'] = _type
+          loc['value'] = os.path.dirname(path) + '/' + root.replace('..', '.')
+          if not loc['value'].endswith('/'):
+            loc['value'] += '/'
+
+          if loc['type'] == 'php':
+            sub['locations'] += '\nroot {};'.format(loc['value'])
+            sub['locations'] += '\nindex index.php index.html;'
+            sub['locations'] += php_fpm_block
+
+          elif loc['type'] == 'sphp':
+            sub['locations'] += '\nroot {};'.format(loc['value'])
+            sub['locations'] += '\nindex index.php index.html;'
+            sub['locations'] += sphp_fpm_block
+
+          else:
+            print '[error] Invalid location type {}'.format(_type)
+
+          continue
+
         # Proxy to port
-        elif (isinstance(value, int)):
+        elif isinstance(value, int):
           loc['type'] = 'proxy_pass'
           loc['value'] = 'http://localhost:{}'.format(value)
 
