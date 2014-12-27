@@ -5,6 +5,9 @@ Nginxify parses JSON configurations of NGINX config files and creates the approp
 
 ## Usage
 
+PHP is supported with the path config `["php", "path/to/project"]`.
+[SimplifiedPHP](https://github.com/NateFerrero/simplified-php) is supported with the path config `["sphp", "path/to/project"]`.
+
 Create a file called `.nginx` in your home directory (/home/username), and populate according to the following JSON:
 
 ```js
@@ -18,6 +21,16 @@ Create a file called `.nginx` in your home directory (/home/username), and popul
   "other.domain.com": {
     "paths": {
       "/foo": "another/folder/path"
+    }
+  },
+  "another.domain.com": {
+    "paths": {
+      "/": ["sphp", "path/to/sphp-project"]
+    }
+  },
+  "php.domain.com": {
+    "paths": {
+      "/": ["php", "path/to/php-project"]
     }
   }
 }
