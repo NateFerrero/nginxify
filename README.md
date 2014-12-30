@@ -69,7 +69,11 @@ PHP using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["ph
 
 Every time you change your `.nginx` file, you must run Nginxify to update the generated NGINX configuration file.
 
+#### Linux
+
 On Linux, when you have completed editing the configuration file, and after nginxify has been installed (see below), run the `nginxify` command in a shell.
+
+#### Mac OS X
 
 On Mac OS X, run `sudo python /bin/nginxify && sudo nginx -s reload` to regenerate the configuration file.
 
