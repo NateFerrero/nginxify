@@ -67,7 +67,11 @@ PHP using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["ph
 
 ## Running Nginxify
 
-Finally, when you have completed editing the configuration file, and after nginxify has been installed (see below), run the `nginxify` command! That's all.
+Every time you change your `.nginx` file, you must run Nginxify to update the generated NGINX configuration file.
+
+On Linux, when you have completed editing the configuration file, and after nginxify has been installed (see below), run the `nginxify` command in a shell.
+
+On Mac OS X, run `sudo python /bin/nginxify && sudo nginx -s reload` to regenerate the configuration file.
 
 ## Installation - Mac OS X
 
@@ -76,8 +80,6 @@ git clone git@github.com:NateFerrero/nginxify.git
 cd nginxify
 sudo make install-mac-os-x
 ```
-
-Then to run on Mac OS X, just execute the following command: `sudo python /bin/nginxify && sudo nginx -s reload`.
 
 For PHP, be sure to fix permissions for /var/run socket.
 
