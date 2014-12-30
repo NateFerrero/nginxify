@@ -3,13 +3,13 @@ nginxify
 
 Nginxify parses JSON configurations of NGINX config files and creates the appropriate representations in configuration.
 
-## Config File Location
+## NGINX Config File Location
 
-The default configuration file is located at `/etc/nginx/sites-enabled/nginxify.conf`, if this is not included by default, for example on Mac OS X, you will need to include this file in your `nginx.conf` file using the [include](http://nginx.org/en/docs/ngx_core_module.html#include) directive.
+The default generated configuration file is located at `/etc/nginx/sites-enabled/nginxify.conf`, if this is not included by default, for example on Mac OS X, you will need to include this file in your `nginx.conf` file using the [include](http://nginx.org/en/docs/ngx_core_module.html#include) directive.
 
 ## Usage
 
-Create a file called `.nginx` in your user home directory (/home/username), and populate according to the following JSON:
+Create a file called `.nginx` in your user home directory (/home/username), and populate according to the following JSON. Each user can have their own `.nginx` file, and they will be merged in the order returned by the `glob` package in python.
 
 ```js
 {
@@ -48,9 +48,15 @@ Proxy pass to a port with an integer port number as the path config.
 
 PHP using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["php", "path/to/project"]`.
 
+*Important:* You must configure `php-fpm.conf` to listen on a unix socket with the following line: `listen = /var/run/php5-fpm.sock`.
+
 #### SimplifiedPHP
 
 [SimplifiedPHP](https://github.com/NateFerrero/simplified-php) using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["sphp", "path/to/project"]`.
+
+*Important:* You must configure `php-fpm.conf` to listen on a unix socket with the following line: `listen = /var/run/php5-fpm.sock`.
+
+*Important:* You must install the `simplified-php` project at `/usr/share/simplified-php`, this can be confirmed by running `cat /usr/share/simplified-php/simplified.php` - if the file is displayed, you should be good to go.
 
 ## Running Nginxify
 
