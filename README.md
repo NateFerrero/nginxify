@@ -51,7 +51,19 @@ Create a file called `.nginx` in your home directory (/home/username), and popul
 
 Finally, when you have completed editing the configuration file, run the `nginxify` command! That's all.
 
-## Installation
+## Installation - Mac OS X
+
+```bash
+git clone git@github.com:NateFerrero/nginxify.git
+cd nginxify
+sudo make install-mac-os-x
+```
+
+Then to run on Mac OS X, just execute the following command: `sudo python /bin/nginxify && sudo nginx -s reload`.
+
+For PHP, be sure to fix permissions for /var/run socket.
+
+## Installation - Linux
 
 ```bash
 git clone git@github.com:NateFerrero/nginxify.git
