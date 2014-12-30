@@ -9,7 +9,7 @@ The default generated configuration file is located at `/etc/nginx/sites-enabled
 
 ## Usage
 
-Create a file called `.nginx` in your user home directory (/home/username), and populate according to the following JSON. Each user can have their own `.nginx` file, and they will be merged in the order returned by the `glob` package in Python.
+Create a file called `.nginx` in your user home directory (`/home/username/.nginx` or `/Users/username/.nginx` on Mac OS X), and populate according to the following JSON. Each user can have their own `.nginx` file, and they will be merged in the order returned by the `glob` package in Python.
 
 Be sure to [install NGINX](http://wiki.nginx.org/Install) before continuing.
 
