@@ -13,11 +13,13 @@ Create a file called `.nginx` in your user home directory (`/home/username/.ngin
 
 Be sure to [install NGINX](http://wiki.nginx.org/Install) before continuing.
 
+*Important:* All paths are relative to the home directory containing the `.nginx` file, as such do not begin paths with a `/` or `./` - all projects should be under your home directory. You can use projects that are not within your home directory, but those must be proxied to a local port.
+
 ```js
 {
   "my.domain.com": {
     "paths": {
-      "/": "my_domain", // this is a directory relative to your home directory,
+      "/": "projects/my_domain/public", // this is a directory relative to your home directory,
       "/testapp": 3000  // This will proxy all requests to a server running on port 3000
     }
   },
