@@ -19,16 +19,19 @@ Create a file called `.nginx` in your user home directory (/home/username), and 
       "/testapp": 3000  // This will proxy all requests to a server running on port 3000
     }
   },
+
   "other.domain.com": {
     "paths": {
       "/foo": "another/folder/path"
     }
   },
+
   "another.domain.com": {
     "paths": {
       "/": ["sphp", "path/to/sphp-project"]
     }
   },
+
   "php.domain.com": {
     "paths": {
       "/": ["php", "path/to/php-project"]
