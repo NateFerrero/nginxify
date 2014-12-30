@@ -95,18 +95,19 @@ cd nginxify
 sudo make install
 ```
 
-Then, add the following to /etc/sudoers using `visudo`:
+## Allowing users to run `nginxify` without sudo
+
+Add the following to /etc/sudoers using `visudo`:
 
 ```bash
 # Nginxify
 %nginxify ALL=NOPASSWD: /bin/nginxify, /etc/init.d/nginx reload
 ```
 
-
-## Allowing Users to run `nginxify`
+Add a user to the nginxify group:
 
 ```bash
 sudo usermod -a -G nginxify the_username
 ```
 
-Keep in mind that the user will have to open a new shell to gain the new group permissions.
+Keep in mind that the user will have to open a new shell to use the new group permissions.
