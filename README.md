@@ -5,7 +5,7 @@ Nginxify parses JSON configurations of NGINX config files and creates the approp
 
 ## Config File Location
 
-The default configuration file is located at `/etc/nginx/sites-enabled/nginxify.conf`, if this is not included by default, for example on Mac OS X, you will need to include this file in your `nginx.conf` file using the (include)[http://nginx.org/en/docs/ngx_core_module.html#include] directive.
+The default configuration file is located at `/etc/nginx/sites-enabled/nginxify.conf`, if this is not included by default, for example on Mac OS X, you will need to include this file in your `nginx.conf` file using the [include](http://nginx.org/en/docs/ngx_core_module.html#include) directive.
 
 ## Usage
 
