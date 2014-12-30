@@ -13,7 +13,7 @@ Create a file called `.nginx` in your user home directory (`/home/username/.ngin
 
 Be sure to [install NGINX](http://wiki.nginx.org/Install) before continuing.
 
-*Important:* All paths are relative to the home directory containing the `.nginx` file, as such do not begin paths with a `/` or `./` - all projects should be under your home directory. You can use projects that are not within your home directory, but those must be proxied to a local port.
+**Important:** All paths are relative to the home directory containing the `.nginx` file, as such do not begin paths with a `/` or `./` - all projects should be under your home directory. You can use projects that are not within your home directory, but those must be proxied to a local port.
 
 ```js
 {
@@ -55,15 +55,15 @@ Proxy pass to a port with an integer port number as the path config.
 
 PHP using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["php", "path/to/project"]`.
 
-*Important:* You must configure `php-fpm.conf` to listen on a unix socket with the following line: `listen = /var/run/php5-fpm.sock`.
+**Important:** You must configure `php-fpm.conf` to listen on a unix socket with the following line: `listen = /var/run/php5-fpm.sock`.
 
 #### SimplifiedPHP
 
 [SimplifiedPHP](https://github.com/NateFerrero/simplified-php) using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["sphp", "path/to/project"]`.
 
-*Important:* You must configure `php-fpm.conf` to listen on a unix socket with the following line: `listen = /var/run/php5-fpm.sock`.
+**Important:** You must configure `php-fpm.conf` to listen on a unix socket with the following line: `listen = /var/run/php5-fpm.sock`.
 
-*Important:* You must install the `simplified-php` project at `/usr/share/simplified-php`, this can be confirmed by running `cat /usr/share/simplified-php/simplified.php` - if the file is displayed, you should be good to go.
+**Important:** You must install the `simplified-php` project at `/usr/share/simplified-php`, this can be confirmed by running `cat /usr/share/simplified-php/simplified.php` - if the file is displayed, you should be good to go.
 
 ## Running Nginxify
 
