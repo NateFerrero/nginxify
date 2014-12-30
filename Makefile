@@ -1,6 +1,14 @@
 install:
 	groupadd -f nginxify
+	make _install
 
+install-mac-os-x:
+	rm -rf /bin/nginxify
+	cp nginxify.py /bin/nginxify
+	mkdir -p /var/log/nginx
+	@echo "Installed! Use: sudo python /bin/nginxify"
+
+_install:
 	rm -rf /bin/nginxify
 	cp nginxify.py /bin/nginxify
 	chown root:nginxify /bin/nginxify

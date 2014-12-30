@@ -80,7 +80,17 @@ server <<
   {locations}
 >>"""
 
-for path in glob.glob('/home/*/.nginx'):
+if os.path.exists('/Users'):
+  pattern = '/Users/*/.nginx'
+
+elif os.path.exists('/home'):
+  pattern = '/home/*/.nginx'
+
+else:
+  raise OSError('No suitable search path found')
+
+for path in glob.glob(pattern):
+  print path
   with open(path) as file:
     user = os.path.basename(os.path.dirname(path))
     print '[nginxify] Loading nginx config for user: {}'.format(user)
