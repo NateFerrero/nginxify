@@ -5,23 +5,7 @@ Nginxify parses JSON configurations of NGINX config files and creates the approp
 
 ## Usage
 
-#### Static
-
-Static site path config has a string path relative to your home folder.
-
-#### Proxy Pass
-
-Proxy pass to a port with an integer port number as the path config.
-
-#### PHP
-
-PHP using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["php", "path/to/project"]`.
-
-#### SimplifiedPHP
-
-[SimplifiedPHP](https://github.com/NateFerrero/simplified-php) using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["sphp", "path/to/project"]`.
-
-Create a file called `.nginx` in your home directory (/home/username), and populate according to the following JSON:
+Create a file called `.nginx` in your user home directory (/home/username), and populate according to the following JSON:
 
 ```js
 {
@@ -48,8 +32,25 @@ Create a file called `.nginx` in your home directory (/home/username), and popul
   }
 }
 ```
+#### Static
 
-Finally, when you have completed editing the configuration file, run the `nginxify` command! That's all.
+Static site path config has a string path relative to your home folder.
+
+#### Proxy Pass
+
+Proxy pass to a port with an integer port number as the path config.
+
+#### PHP
+
+PHP using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["php", "path/to/project"]`.
+
+#### SimplifiedPHP
+
+[SimplifiedPHP](https://github.com/NateFerrero/simplified-php) using [PHP-FPM](http://php-fpm.org/) is supported with the path config `["sphp", "path/to/project"]`.
+
+## Running Nginxify
+
+Finally, when you have completed editing the configuration file, and after nginxify has been installed (see below), run the `nginxify` command! That's all.
 
 ## Installation - Mac OS X
 
