@@ -18,6 +18,9 @@ location {location} <<
 error_block = """error_page {code} {value};
 """
 
+generic_block = """{key} {value};
+"""
+
 php_fpm_block = """
 location ~ \.php$ <<
   try_files $uri =404;
@@ -158,12 +161,21 @@ for path in glob.glob(pattern):
             value = setup['default']
 
             for key, val in setup.items():
+               if key == 'default':
+                   continue
+
+               # Error pages
                try:
                    code = int(key)
                    if code > 200:
                        loc['config'] += error_block.format(code=code, value=val)
+                   continue
                except:
                    pass
+
+               # Try Files etc
+               if isinstance(key, basestring):
+                   loc['config'] += generic_block.format(key=key, value=val)
 
         # Static files
         if isinstance(value, basestring):
