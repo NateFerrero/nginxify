@@ -11,7 +11,12 @@ all = ""
 locblock = """
 location {location} <<
   {type} {value};
+
+  {config}
 >>"""
+
+error_block = """error_page {code} {value};
+"""
 
 php_fpm_block = """
 location ~ \.php$ <<
@@ -144,7 +149,21 @@ for path in glob.glob(pattern):
       for (location, value) in conf['paths'].items():
         loc = {
           'location': location,
+          'config': ''
         }
+
+        # Advanced configuration with {default: ..., 404: 'index.html'} etc.
+        if isinstance(value, dict):
+            setup = value
+            value = setup['default']
+
+            for key, val in setup.items():
+               try:
+                   code = int(key)
+                   if code > 200:
+                       loc['config'] += error_block.format(code=code, value=val)
+               except:
+                   pass
 
         # Static files
         if isinstance(value, basestring):
@@ -153,7 +172,7 @@ for path in glob.glob(pattern):
           if not loc['value'].endswith('/'):
             loc['value'] += '/'
 
-        # Advanced configuration
+        # Simple [type, value] configuration
         elif isinstance(value, list):
           if len(value) != 2:
             print '[error] List must contain 2 elements exactly'
