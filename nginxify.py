@@ -221,6 +221,11 @@ for path in glob.glob(pattern):
         elif isinstance(value, int):
           loc['type'] = 'proxy_pass'
           loc['value'] = 'http://localhost:{}'.format(value)
+          if location != '/':
+             loc['config'] += generic_block.format(
+               key="rewrite",
+               value="^{}(.*)$ $1 break".format(location)
+             )
           loc['config'] += proxy_upgrade_block
 
         # Invalid
