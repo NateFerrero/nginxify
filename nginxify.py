@@ -21,6 +21,12 @@ error_block = """error_page {code} {value};
 generic_block = """{key} {value};
 """
 
+proxy_upgrade_block = """
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection "Upgrade";
+"""
+
 php_fpm_block = """
 location ~ \.php$ <<
   try_files $uri =404;
@@ -215,6 +221,7 @@ for path in glob.glob(pattern):
         elif isinstance(value, int):
           loc['type'] = 'proxy_pass'
           loc['value'] = 'http://localhost:{}'.format(value)
+          loc['config'] += proxy_upgrade_block
 
         # Invalid
         else:
