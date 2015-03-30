@@ -164,7 +164,7 @@ for path in glob.glob(pattern):
         # Advanced configuration with {default: ..., 404: 'index.html'} etc.
         if isinstance(value, dict):
             setup = value
-            value = setup['default']
+            value = setup.get('default', None)
 
             for key, val in setup.items():
                if key == 'default':
@@ -189,6 +189,11 @@ for path in glob.glob(pattern):
           loc['value'] = os.path.dirname(path) + '/' + value.replace('..', '.')
           if not loc['value'].endswith('/'):
             loc['value'] += '/'
+
+        # None
+        elif value is None:
+          loc['type'] = '# No'
+          loc['value'] = 'default set'
 
         # Simple [type, value] configuration
         elif isinstance(value, list):
